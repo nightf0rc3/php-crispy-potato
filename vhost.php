@@ -1,5 +1,6 @@
 <?php
 
+
 class Vhost {
 
 	var $vhost;
