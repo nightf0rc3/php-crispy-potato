@@ -1,6 +1,6 @@
 <?php
 
-class vhost {
+class Vhost {
 
 	var $vhost;
 	var $conf;
@@ -15,13 +15,12 @@ class vhost {
 </VirtualHost>';
 	}
 
-	//Functions
+	//functions
 	public function setup() {
 		if ($this->vhost == 'error') {
 			return false;
 		} else {
-			$output = shell_exec('mkdir /var/www/' . $this->vhost);
-			//$output = shell_exec('sudo chown www-data /var/www/' . $this->vhost);
+			shell_exec('mkdir /var/www/' . $this->vhost);
 			shell_exec('echo "' . $this->conf . '" | sudo tee /etc/apache2/sites-available/' . $this->vhost . '.conf > /dev/null');
 			$this->enable();
 			return true;
@@ -33,24 +32,24 @@ class vhost {
 			return false;
 		} else {
 			$this->disable();
-			$output = shell_exec('sudo trash-put /var/www/' . $this->vhost);
-			$output = shell_exec('sudo trash-put /etc/apache2/sites-available/' . $this->vhost . '.conf');
+			shell_exec('sudo trash-put /var/www/' . $this->vhost);
+			shell_exec('sudo trash-put /etc/apache2/sites-available/' . $this->vhost . '.conf');
 			return true;
 		}
 	}
 
 	//Apache functions
 	public function reload() {
-		$output = shell_exec('sudo service apache2 reload');
+		shell_exec('sudo service apache2 reload');
 	}
 
 	public function disable() {
-		$output = shell_exec('sudo a2dissite ' . $this->vhost . '.conf');
+		shell_exec('sudo a2dissite ' . $this->vhost . '.conf');
 		$this->reload();
 	}
 
 	public function enable() {
-		$output = shell_exec('sudo a2ensite ' . $this->vhost . '.conf');
+		shell_exec('sudo a2ensite ' . $this->vhost . '.conf');
 		$this->reload();
 	}
 }

@@ -11,7 +11,7 @@ class SiteManager {
 	var $id;
 
 	function __construct($mail, $token) {
-		$this->dns = new dns($mail, $token);
+		$this->dns = new Dns($mail, $token);
 	}
 
 	public function setZone($zone) {
@@ -20,7 +20,7 @@ class SiteManager {
 
 	public function setSite($site) {
 		$this->cname = strtolower($site);
-		$this->vhost = new vhost($this->cname);
+		$this->vhost = new Vhost($this->cname);
 		$this->data = array(
 			'type'    => 'CNAME',
 			'name'    => $this->cname,

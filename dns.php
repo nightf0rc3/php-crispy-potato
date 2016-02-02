@@ -1,6 +1,6 @@
 <?php
 
-class dns {
+class Dns {
 
 	var $email;
 	var $auth_key;
@@ -69,7 +69,6 @@ class dns {
 				curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 			} else if ($method === 'delete') {
-				//curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 				$url .= '/' . $data;
 				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
 				$headers[] = "Content-type: application/json";
@@ -80,9 +79,6 @@ class dns {
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			curl_setopt($ch, CURLOPT_URL, $url);
 			$http_result = curl_exec($ch);
-			$error       = curl_error($ch);
-			$information = curl_getinfo($ch);
-			$http_code   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 			curl_close($ch);
 			return json_decode($http_result);
 
