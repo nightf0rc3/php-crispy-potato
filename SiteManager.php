@@ -5,7 +5,6 @@ include 'vhost.php';
 
 class SiteManager {
 
-	private $zone;
 	private $cname;
 	private $data;
 	private $id;
