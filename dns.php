@@ -3,14 +3,16 @@
 
 class Dns {
 
-	var $email;
-	var $auth_key;
-	var $zone;
+	private $email;
+	private $auth_key;
+	private $zone;
 
 
-	function __construct($mail, $token) {
-		$this->email = $mail;
-		$this->auth_key = $token;
+	public function __construct() {
+		$config = json_decode(file_get_contents(dirname(__FILE__) . '/config.json'), true);
+		$this->email = $config['email'];
+		$this->auth_key = $config['token'];
+		$this->zone = $config['zone'];
 	}
 
 	//set Functions

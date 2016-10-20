@@ -3,10 +3,10 @@
 
 class Vhost {
 
-	var $vhost;
-	var $conf;
+	private $vhost;
+	private $conf;
 
-	function __construct($name = 'error') {
+	public function __construct($name = 'error') {
 		$this->vhost = $name;
 		$this->conf ='<VirtualHost *:80>
 	ServerName '. $this->vhost . '.domain.com

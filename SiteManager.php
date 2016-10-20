@@ -5,13 +5,13 @@ include 'vhost.php';
 
 class SiteManager {
 
-	var $zone;
-	var $cname;
-	var $data;
-	var $id;
+	private $zone;
+	private $cname;
+	private $data;
+	private $id;
 
-	function __construct($mail, $token) {
-		$this->dns = new Dns($mail, $token);
+	public function __construct() {
+		$this->dns = new Dns();
 	}
 
 	public function setZone($zone) {
